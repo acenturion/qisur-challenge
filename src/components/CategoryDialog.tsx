@@ -84,7 +84,7 @@ const CategoryDialog: React.FC = () => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
+        <Button variant="outline" size="sm" className="w-full sm:w-auto">
           <FolderIcon className="w-4 h-4 mr-2" />
           Categories
         </Button>

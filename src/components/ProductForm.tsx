@@ -146,7 +146,7 @@ const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; o
           )}
         />
         
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <FormField
             control={form.control}
             name="price"
@@ -205,7 +205,7 @@ const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; o
             <FormItem>
               <FormLabel>Product Image</FormLabel>
               <FormControl>
-                <div className="space-y-2">
+                <div className="flex flex-col sm:flex-row gap-2">
                   <input
                     type="file"
                     accept="image/*"
@@ -217,7 +217,7 @@ const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; o
                     type="button"
                     variant="outline"
                     onClick={() => document.getElementById('image-upload')?.click()}
-                    className="w-1/4 mr-4"
+                    className="w-full sm:w-auto sm:flex-1"
                   >
                     {imagePreview ? <ImageIcon className="w-4 h-4" /> : <ImagePlusIcon className="w-4 h-4" />}
                     {imagePreview ? 'Change Image' : 'Select Image'}
@@ -226,7 +226,7 @@ const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; o
                   <Button
                     type="button"
                     variant="destructive"
-                    className="w-1/4"
+                    className="w-full sm:w-auto sm:flex-1"
                     onClick={() => {
                       setImagePreview(null)
                       form.setValue('image', '')
@@ -252,11 +252,11 @@ const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; o
           )}
         />
         
-        <div className="flex justify-end gap-2">
-          <Button type="button" onClick={onClose} variant="outline" size="sm">
+        <div className="flex flex-col sm:flex-row justify-end gap-2">
+          <Button type="button" onClick={onClose} variant="outline" size="sm" className="w-full sm:w-auto">
             Cancel
           </Button>
-          <Button type="submit" size="sm">
+          <Button type="submit" size="sm" className="w-full sm:w-auto">
             Save
           </Button>
         </div>

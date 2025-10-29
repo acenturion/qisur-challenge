@@ -10,6 +10,7 @@ const Dashboard: React.FC = () => {
   const { products } = useStore()
   const [isLoading, setIsLoading] = React.useState(true)
 
+  //Simulo el fetch de la primer llamada para generar un loading
   React.useEffect(() => {
     const timer = setTimeout(() => setIsLoading(false), 1000)
     return () => clearTimeout(timer)

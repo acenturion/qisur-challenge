@@ -42,7 +42,7 @@ const Products: React.FC = () => {
     <div className="space-y-4">
       {/* Barra de búsqueda */}
       <div className="flex items-center gap-4">
-        <div className="w-80">
+        <div className="w-full sm:w-80">
           <Input
             type="text"
             placeholder="Buscar productos por nombre, SKU o categoría..."
@@ -53,15 +53,15 @@ const Products: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
         <div className="flex items-center gap-2">
-          <Button onClick={() => setView('grid')} variant={view === 'grid' ? 'default' : 'outline'} size="sm">Grid</Button>
-          <Button onClick={() => setView('list')} variant={view === 'list' ? 'default' : 'outline'} size="sm">List</Button>
+          <Button onClick={() => setView('grid')} variant={view === 'grid' ? 'default' : 'outline'} size="sm" className="flex-1 sm:flex-initial">Grid</Button>
+          <Button onClick={() => setView('list')} variant={view === 'list' ? 'default' : 'outline'} size="sm" className="flex-1 sm:flex-initial">List</Button>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
           <CategoryDialog />
-          <Button onClick={() => exportProductsCSV()} variant="outline" size="sm">Export CSV</Button>
-          <Button onClick={() => navigate('/products/new')} size="sm">New product</Button>
+          <Button onClick={() => exportProductsCSV()} variant="outline" size="sm" className="w-full sm:w-auto">Export CSV</Button>
+          <Button onClick={() => navigate('/products/new')} size="sm" className="w-full sm:w-auto">New product</Button>
         </div>
       </div>
 
@@ -87,11 +87,11 @@ const Products: React.FC = () => {
         </div>
       )}
 
-      <div className="flex items-center justify-between">
-        <div>Page {page} / {totalPages}</div>
-        <div className="flex gap-2">
-          <Button onClick={() => setPage(p => Math.max(1, p - 1))} variant="outline" size="sm">Prev</Button>
-          <Button onClick={() => setPage(p => Math.min(totalPages, p + 1))} variant="outline" size="sm">Next</Button>
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <div className="text-sm">Page {page} / {totalPages}</div>
+        <div className="flex gap-2 w-full sm:w-auto">
+          <Button onClick={() => setPage(p => Math.max(1, p - 1))} variant="outline" size="sm" className="flex-1 sm:flex-initial" disabled={page === 1}>Prev</Button>
+          <Button onClick={() => setPage(p => Math.min(totalPages, p + 1))} variant="outline" size="sm" className="flex-1 sm:flex-initial" disabled={page === totalPages}>Next</Button>
         </div>
       </div>
     </div>
