@@ -109,6 +109,10 @@ Archivos de configuración relevantes en la raíz:
 <img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/8b765fd7-7273-4f6e-84de-c97468a9e67a" />
 
 
+#### Recorrido completo
+![chrome_PsVoTYAmbx](https://github.com/user-attachments/assets/846d36ad-0956-409a-ba9f-c25d2cbb7c84)
+
+
 ### Licencia
 
 Uso educativo/demostrativo.
