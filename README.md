@@ -91,6 +91,24 @@ Archivos de configuración relevantes en la raíz:
 - `eslint.config.js`: reglas de lint
 - `index.html`: plantilla HTML base
 
+### Imagenes
+#### Dashboard
+<img width="600" height="400" alt="Screenshot 2025-10-29 025855" src="https://github.com/user-attachments/assets/80bfcc99-c0a6-4ccd-a63b-39a79b68e157" />
+
+
+#### Crear o editar producto
+<img width="600" height="400" alt="localhost_5173_dashboard (1)" src="https://github.com/user-attachments/assets/f63a8aa7-ae6c-4491-8140-cdebf75b6fa4" />
+
+#### Tema oscuro
+<img width="600" height="400" alt="localhost_5173_dashboard (2)" src="https://github.com/user-attachments/assets/504482dc-d470-438f-a958-9462299a368f" />
+
+#### Historial de cambios
+<img width="600" height="400" alt="Screenshot_1" src="https://github.com/user-attachments/assets/f904c078-de02-467f-840a-321cd71effe5" />
+
+#### Categorias
+<img width="600" height="400" alt="image" src="https://github.com/user-attachments/assets/8b765fd7-7273-4f6e-84de-c97468a9e67a" />
+
+
 ### Licencia
 
 Uso educativo/demostrativo.
