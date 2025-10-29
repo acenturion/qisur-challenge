@@ -102,7 +102,7 @@ const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; o
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 bg-white dark:bg-gray-800 p-4 rounded shadow">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4 p-4 border rounded shadow">
         <FormField
           control={form.control}
           name="name"
