@@ -5,7 +5,13 @@ import { z } from 'zod'
 import { useStore } from '../context/Store'
 import { Button } from '../components/ui/button'
 import { Input } from '../components/ui/input'
-import { Select } from '../components/ui/select'
+import {
+  Select,
+  SelectItem,
+  SelectContent,
+  SelectTrigger,
+  SelectValue,
+} from '../components/ui/select'
 import {
   Form,
   FormControl,
@@ -37,7 +43,7 @@ type FormValues = z.infer<typeof formSchema>
 const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; onClose?: () => void }> = ({ initial, onClose }) => {
   const { createProduct, updateProduct, categories } = useStore()
   const [imagePreview, setImagePreview] = useState<string | null>(initial?.image || null)
-  
+
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -58,7 +64,7 @@ const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; o
         toast.error('Please select a valid image file')
         return
       }
-      
+
       // Validar tamaño (máximo 5MB)
       if (file.size > 5 * 1024 * 1024) {
         toast.error('Image size must be less than 5MB')
@@ -83,7 +89,7 @@ const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; o
       categoryId: data.categoryId || undefined,
       image: data.image || undefined
     }
-    
+
     if (initial && initial.id) {
       updateProduct(initial.id, productData as any)
       toast.success('Product updated successfully')
@@ -110,7 +116,7 @@ const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; o
             </FormItem>
           )}
         />
-        
+
         <FormField
           control={form.control}
           name="sku"
@@ -124,7 +130,7 @@ const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; o
             </FormItem>
           )}
         />
-        
+
         <FormField
           control={form.control}
           name="categoryId"
@@ -132,20 +138,24 @@ const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; o
             <FormItem>
               <FormLabel>Category</FormLabel>
               <FormControl>
-                <Select {...field}>
-                  <option value="">Select a category (optional)</option>
-                  {categories.map((category) => (
-                    <option key={category.id} value={category.id}>
-                      {category.name}
-                    </option>
-                  ))}
+                <Select value={field.value} onValueChange={field.onChange}>
+                  <SelectTrigger className='w-full'>
+                    <SelectValue placeholder="Select a category (optional)" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {categories.map((category) => (
+                      <SelectItem key={category.id} value={category.id}>
+                        {category.name}
+                      </SelectItem >
+                    ))}
+                  </SelectContent>
                 </Select>
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <FormField
             control={form.control}
@@ -154,8 +164,8 @@ const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; o
               <FormItem>
                 <FormLabel>Price</FormLabel>
                 <FormControl>
-                  <Input 
-                    type="text" 
+                  <Input
+                    type="text"
                     placeholder="0.00"
                     {...field}
                     onChange={(e) => {
@@ -171,7 +181,7 @@ const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; o
               </FormItem>
             )}
           />
-          
+
           <FormField
             control={form.control}
             name="stock"
@@ -179,8 +189,8 @@ const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; o
               <FormItem>
                 <FormLabel>Stock</FormLabel>
                 <FormControl>
-                  <Input 
-                    type="text" 
+                  <Input
+                    type="text"
                     placeholder="0"
                     {...field}
                     onChange={(e) => {
@@ -197,7 +207,7 @@ const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; o
             )}
           />
         </div>
-        
+
         <FormField
           control={form.control}
           name="image"
@@ -223,16 +233,16 @@ const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; o
                     {imagePreview ? 'Change Image' : 'Select Image'}
                   </Button>
                   {imagePreview && (
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    className="w-full sm:w-auto sm:flex-1"
-                    onClick={() => {
-                      setImagePreview(null)
-                      form.setValue('image', '')
-                    }}
-                  >
-                    <TrashIcon className="w-4 h-4" />
+                    <Button
+                      type="button"
+                      variant="destructive"
+                      className="w-full sm:w-auto sm:flex-1"
+                      onClick={() => {
+                        setImagePreview(null)
+                        form.setValue('image', '')
+                      }}
+                    >
+                      <TrashIcon className="w-4 h-4" />
                       Remove Image
                     </Button>
                   )}
@@ -241,9 +251,9 @@ const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; o
               <FormMessage />
               {imagePreview && (
                 <div className="mt-2">
-                  <img 
-                    src={imagePreview} 
-                    alt="Preview" 
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
                     className="w-32 h-32 object-cover rounded border"
                   />
                 </div>
@@ -251,7 +261,7 @@ const ProductForm: React.FC<{ initial?: Partial<FormValues> & { id?: string }; o
             </FormItem>
           )}
         />
-        
+
         <div className="flex flex-col sm:flex-row justify-end gap-2">
           <Button type="button" onClick={onClose} variant="outline" size="sm" className="w-full sm:w-auto">
             Cancel
